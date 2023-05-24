@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mycompany.Utils.SessionUtils;
 import com.mycompany.dao.DaoFactory;
@@ -33,6 +34,14 @@ public class SupprimerJoueur extends HttpServlet {
 			response.sendRedirect("/AppJoueur/login");
 			return;
 		}
+		
+	    HttpSession session = request.getSession(false);
+	    if (!SessionUtils.isAdmin(session)) {
+	        response.sendRedirect(request.getContextPath() + "/Login");
+	        return;
+	    }
+		
+		
 
 		String id = request.getParameter("id");
 		long idl = Long.parseLong(id);

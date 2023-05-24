@@ -42,7 +42,7 @@ public class ListJoueur extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		
-		if (!SessionUtils.isUserLoggedIn(request)) {
+		if (session.getAttribute("connectedUser") == null) {
 			response.sendRedirect("/AppJoueur/login");
 			return;
 		}

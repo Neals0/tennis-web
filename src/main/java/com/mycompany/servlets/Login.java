@@ -27,14 +27,12 @@ public class Login extends HttpServlet {
 		userdaoimpl = new UserDaoImpl(daoFactory);
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String login = request.getParameter("txtLogin");
 		String password = request.getParameter("txtPassword");

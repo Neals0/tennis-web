@@ -76,7 +76,9 @@
 <div class="container">
 
 <div style="    padding: 1.5rem;    margin-right: 0;    margin-left: 0;    border-width: .2rem;">
-	<a type="button" class="btn btn-primary" href="/AppJoueur/ajoutertournoi">Ajouter tournoi</a>
+	<c:if test="${connectedUser.profil == 1}">
+		<a type="button" class="btn btn-primary" href="/AppJoueur/ajoutertournoi">Ajouter tournoi</a>
+	</c:if>
 </div>
 <table class="table">
   <thead>
@@ -104,9 +106,11 @@
       <th scope="row">${ tournoi.id }</th>
       <td><c:out value="${ tournoi.nom }" /></td>
       <td><c:out value="${ tournoi.code }" /></td>
-	  <td>
-	    <a type="button" class="btn btn-outline-primary" href="/AppJoueur/modifiertournoi?id=${ tournoi.id }" role="button">Modifier</a>
-		<a type="button" class="btn btn-outline-warning" href="/AppJoueur/supprimertournoi?id=${ tournoi.id }" role="button">Supprimer</a>
+	  <td>		
+			<c:if test="${connectedUser.profil == 1}">
+				<a type="button" class="btn btn-outline-primary" href="/AppJoueur/modifiertournoi?id=${ tournoi.id }" role="button">Modifier</a>
+				<a type="button" class="btn btn-outline-warning" href="/AppJoueur/supprimertournoi?id=${ tournoi.id }" role="button">Supprimer</a>
+      </c:if>
 	  </td>
     </tr>
     </c:forEach>

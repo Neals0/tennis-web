@@ -76,16 +76,18 @@
 <div class="container">
 
 <div style="    padding: 1.5rem;    margin-right: 0;    margin-left: 0;    border-width: .2rem;">
-	<a type="button" class="btn btn-primary" href="/AppJoueur/ajouterjoueur">Ajouter joueur</a>
+	<c:if test="${connectedUser.profil == 1}">
+		<a type="button" class="btn btn-primary" href="/AppJoueur/ajouterjoueur">Ajouter joueur</a>
+	</c:if>
 </div>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col" style="width:10%">#</th>
-      <th scope="col" style="width:25%">Nom</th>
+      <th scope="col" style="width:20%">#</th>
+      <th scope="col" style="width:20%">Nom</th>
       <th scope="col" style="width:20%">Prenom</th>
       <th scope="col" style="width:20%">Sexe</th>
-	  <th scope="col" style="width:20%"></th>
+      <th scope="col" style="width:20%"></th>
     </tr>
   </thead>
   <tbody>
@@ -107,9 +109,10 @@
       <td><c:out value="${ joueur.prenom }" /></td>
       <td><c:out value="${ joueur.sexe }" /></td>
 	  <td>
-	    <a type="button" class="btn btn-outline-primary" href="/AppJoueur/modifierjoueur?id=${ joueur.id }" role="button">Modifier</a>
-	    
-		<a type="button" class="btn btn-outline-warning" href="/AppJoueur/supprimerjoueur?id=${ joueur.id }" role="button">Supprimer</a>
+			<c:if test="${connectedUser.profil == 1}">
+				<a type="button" class="btn btn-outline-primary" href="modifierjoueur?id=${joueur.id}" role="button">Modifier</a>
+				<a type="button" class="btn btn-outline-warning" href="supprimerjoueur?id=${joueur.id}" role="button">Supprimer</a>
+      </c:if>
 	  </td>
     </tr>
     </c:forEach>

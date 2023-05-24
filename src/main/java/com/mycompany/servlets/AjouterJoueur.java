@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.mycompany.Utils.SessionUtils;
 import com.mycompany.beans.Joueur;
 import com.mycompany.dao.DaoFactory;
@@ -34,15 +36,16 @@ public class AjouterJoueur extends HttpServlet {
 			return;
 		}
 		
+	    HttpSession session = request.getSession(false);
+	    if (!SessionUtils.isAdmin(session)) {
+	        response.sendRedirect(request.getContextPath() + "/Login");
+	        return;
+	    }
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/ajouterjoueur.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		if (!SessionUtils.isUserLoggedIn(request)) {
-			response.sendRedirect("/AppJoueur/login");
-			return;
-		}
 		
 		Joueur newJoueur1 = new Joueur();
 

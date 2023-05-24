@@ -106,7 +106,7 @@ public class TournoiDaoImpl implements TournoiDao {
 			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
-				tournois.add(new Tournoi(rs.getLong("id"), rs.getString("code"), rs.getString("nom")));
+				tournois.add(new Tournoi(rs.getLong("id"), rs.getString("nom"), rs.getString("code")));
 			}
 		} catch (Exception exception) {
 			throw new RuntimeException(exception);
